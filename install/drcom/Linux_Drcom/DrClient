@@ -1,0 +1,27 @@
+#!/bin/sh
+
+appname=DrAuth
+dirname=`dirname $0`
+tmp="${dirname#?}"
+if [ "${dirname%$tmp}" != "/" ]; then
+dirname=$PWD/$dirname
+fi
+
+[ -x $dirname/drcomauthsvr ] || chmod +x $dirname/drcomauthsvr
+[ -x $dirname/$appname ] || chmod +x $dirname/$appname
+
+RES=`ps -ef | grep  \drcomauthsvr\$ |grep -v grep`
+#echo $RES
+if [ -z "$RES" ]; then
+  $dirname/drcomauthsvr &
+fi
+
+LD_LIBRARY_PATH=$dirname
+export LD_LIBRARY_PATH
+
+RES=`ps -ef | grep $appname|grep -v grep`
+#echo $RES
+if [ -z "$RES" ]; then
+  $dirname/$appname $* &
+fi
+

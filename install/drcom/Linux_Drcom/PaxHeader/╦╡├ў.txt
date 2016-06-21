@@ -1,0 +1,6 @@
+27 path=Linux/ËµÃ÷.txt
+20 ctime=1323761924
+20 atime=1323761733
+17 SCHILY.dev=70
+18 SCHILY.ino=109
+18 SCHILY.nlink=1
